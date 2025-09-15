@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../types/types";
 import { AuthorService } from "../services/Author.service";
+import {AuthorSchema} from '../validators/author.validate';
+
 
 @injectable()
 export class AuthorController {
@@ -12,7 +14,8 @@ export class AuthorController {
   // Create Author
   createAuthor = async (req: Request, res: Response) => {
     try {
-      const author = await this.authorService.createAuthor(req.body);
+      const validated=AuthorSchema.parse(req.body)
+      const author = await this.authorService.createAuthor(validated);
       return res.status(201).json({
         success: true,
         message: "Author created successfully",
