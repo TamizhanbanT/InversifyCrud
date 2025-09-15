@@ -67,6 +67,32 @@ export class BookController {
     }
   };
 
+  //update
+  updateBook=async(req:Request,res:Response)=>{
+
+    try{
+      const updated=await this.bookService.updateById(+req.params.id,req.body)
+      if(!updated){
+        return res.status(404).json({
+        success:false,
+        message:"Book Not found"
+        })
+      }
+      return res.status(200).json({
+        success:true,
+        message:"Book update successfully"
+      })
+
+    }catch(error:any){
+
+      return res.status(500).json({
+        success:false,
+        message:"Failed to update"
+      })
+    }
+
+  }
+
   // Delete Book
   deleteBook = async (req: Request, res: Response) => {
     try {

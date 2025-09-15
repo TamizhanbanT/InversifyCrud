@@ -32,6 +32,16 @@ export class BookRepository{
         })
     }
 
+
+    //update
+    async update(id:number,book:Partial<BookDto>){
+        return prisma.book.update({
+            where:{
+                bookId:id
+            },
+            data:book
+        })
+    }
     //delete
     async delete(id:number){
         return prisma.book.delete({

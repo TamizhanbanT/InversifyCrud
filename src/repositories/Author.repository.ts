@@ -31,8 +31,18 @@ export class AuthorRepository{
 
         })
     }
+    
+    //update
 
-    //delete
+    async update(id:number,author:Partial<AuthorDto>){
+        return prisma.author.update({
+            where:{authorId:id},
+            data:author
+        })
+
+    }
+
+ //delete
 
     async delete(id:number){
         return prisma.author.delete({

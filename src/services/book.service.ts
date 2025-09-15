@@ -22,10 +22,17 @@ async createBook(data:BookDto){
     return this.bookRepo.findAll();
  }
 
- //async getBookById
+ //getBookById
 
  async getBookById(id:number){
     return this.bookRepo.findById(id);
+ }
+
+ //update
+
+ async updateById(id:number,book:Partial<BookDto>){
+
+    return this.bookRepo.update(id,book)
  }
 
  //delete

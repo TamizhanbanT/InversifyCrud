@@ -63,9 +63,35 @@ export class AuthorController {
         success: false,
         message: "Failed to fetch author",
         error: error.message,
+     
       });
     }
   };
+  //update
+
+  update=async(req:Request,res:Response)=>{
+    try{
+      const updated=await this.authorService.updateAuthor(+req.params.id,req.body)
+      if(!updated){
+        return res.status(404).json({
+          success:false,
+          message:"Author not found"
+        })
+      }
+      return res.status(200).json({
+        success:true,
+        message:"Author updated successfully"
+      })
+
+    }catch(error:any){
+      return res.status(500).json({
+        success:false,message:"Filed to update",
+        error:error.message
+      })
+
+    }
+
+  }
 
   // Delete Author
   deleteAuthor = async (req: Request, res: Response) => {

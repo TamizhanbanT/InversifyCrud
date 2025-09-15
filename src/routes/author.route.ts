@@ -9,6 +9,7 @@ const authorController = container.get<AuthorController>(TYPES.AuthorController)
 router.post("/", authorController. createAuthor);
 router.get("/", authorController.  getAuthor);
 router.get("/:id", authorController. getAuthorById);
+router.put("/:id",authorController.update)
 router.delete("/:id", authorController.deleteAuthor);
 
 export default router;

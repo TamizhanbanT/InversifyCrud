@@ -26,6 +26,13 @@ export class AuthorService {
         return this.authorRepo.findById(id)
     }
 
+    //update
+
+    async updateAuthor(id:number , author:Partial<AuthorDto>){
+        return this.authorRepo.update(id,author)
+
+    }
+
 //delete
 
 async deleteAuthor(id:number){
