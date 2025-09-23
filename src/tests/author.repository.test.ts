@@ -11,8 +11,6 @@ const mockAuthorRepo: jest.Mocked<AuthorRepository> = {
   delete: jest.fn(),
 } as any;
 
-
-
 describe("AuthorService", () => {
   let service: AuthorService;
 
@@ -21,11 +19,9 @@ describe("AuthorService", () => {
     service = new AuthorService(mockAuthorRepo);
   });
 
-  //create
-
   it("should create an author", async () => {
-    const input: AuthorDto = { authorName: "Tamizhanban" };
-    const output = { authorId: 1, authorName: "Tamizhanban", books: [] };
+    const input: AuthorDto = { authorName: "Jane Austen" };
+    const output = { authorId: 1, authorName: "Jane Austen", books: [] };
 
     mockAuthorRepo.create.mockResolvedValue(output);
 
@@ -33,8 +29,6 @@ describe("AuthorService", () => {
     expect(mockAuthorRepo.create).toHaveBeenCalledWith(input);
     expect(result).toEqual(output);
   });
-
-  //getAll
 
   it("should get all authors", async () => {
     const output = [{ authorId: 1, authorName: "Test", books: [] }];
@@ -45,8 +39,6 @@ describe("AuthorService", () => {
     expect(result).toEqual(output);
   });
 
-  //getbyId
-
   it("should get author by ID", async () => {
     const output = { authorId: 1, authorName: "Test", books: [] };
     mockAuthorRepo.findById.mockResolvedValue(output);
@@ -55,9 +47,6 @@ describe("AuthorService", () => {
     expect(mockAuthorRepo.findById).toHaveBeenCalledWith(1);
     expect(result).toEqual(output);
   });
-
-
-//update
 
   it("should update an author", async () => {
     const input: Partial<AuthorDto> = { authorName: "Updated" };
@@ -68,8 +57,6 @@ describe("AuthorService", () => {
     expect(mockAuthorRepo.update).toHaveBeenCalledWith(1, input);
     expect(result).toEqual(output);
   });
-
-  //delete
 
   it("should delete an author", async () => {
     const output = { authorId: 1, authorName: "Deleted", books: [] };
